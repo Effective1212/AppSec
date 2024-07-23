@@ -30,24 +30,22 @@ jobs:
   
 
 ########## CodeQL 
-"""
-  codeql-job:
-    runs-on: self-hosted
-    needs: webgoat-job
 
-    steps:
+#  codeql-job:
+#    runs-on: self-hosted
+#    needs: webgoat-job
 
-    - name: Initialize the CodeQL engine
-      uses: github/codeql-action/init@v2
-      with:
-        languages: 'java'
+#    steps:
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+#    - name: Initialize the CodeQL engine
+#      uses: github/codeql-action/init@v2
+#      with:
+#        languages: 'java'
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-      with:
-        category: 'security' 
+#    - name: Autobuild
+#      uses: github/codeql-action/autobuild@v2
 
-"""
+#    - name: Perform CodeQL Analysis
+#      uses: github/codeql-action/analyze@v2
+#      with:
+#        category: 'security' 
