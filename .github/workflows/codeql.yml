@@ -1,0 +1,28 @@
+name: CodeQL Analysis
+on: push
+jobs:
+    codeql-job:
+        runs-on: self-hosted
+        needs: webgoat-job
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download Docker container state
+        uses: actions/download-artifact@v3
+        with:
+          name: webgoat-container
+          path: /var/lib/docker/containers
+
+      - name: Initialize the CodeQL engine
+        uses: github/codeql-action/init@v2
+        with:
+        languages: 'java'
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: 'security'
