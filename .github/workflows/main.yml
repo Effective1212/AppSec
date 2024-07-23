@@ -22,13 +22,6 @@ jobs:
       - name: Pull and run Docker container
         run: docker run -d --name webgoat -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Europe/Istanbul webgoat/webgoat
 
-
-      - name: Save Docker container state
-        uses: actions/upload-artifact@v3
-        with:
-          name: webgoat-container
-          path: /var/lib/docker/containers
-
 ########## CodeQL 
 
   codeql-job:
