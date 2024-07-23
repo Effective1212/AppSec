@@ -21,15 +21,22 @@ jobs:
 
       - name: Pull and run Docker container
         run: docker run -d --name webgoat -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Europe/Istanbul webgoat/webgoat
+      
+      - name: Cleanup Docker container
+        if: always()
+        run: |
+          docker stop webgoat
+          docker rm webgoat
+  
 
 ########## CodeQL 
-
+"""
   codeql-job:
     runs-on: self-hosted
     needs: webgoat-job
 
     steps:
-      
+
     - name: Initialize the CodeQL engine
       uses: github/codeql-action/init@v2
       with:
@@ -43,3 +50,4 @@ jobs:
       with:
         category: 'security' 
 
+"""
