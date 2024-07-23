@@ -7,4 +7,4 @@ jobs:
       image: alpine:latest
     steps:
     - name: Install openjdk17 
-      run: apk add openjdk17 
+      run: apk add openjdk17
